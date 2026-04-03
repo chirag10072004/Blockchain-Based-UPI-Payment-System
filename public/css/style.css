@@ -1,0 +1,1388 @@
+/* Import Google Fonts for a clean, modern look */
+@import url('https://fonts.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap'); /* For monospaced addresses */
+
+/* Define QuantumBank color palette */
+:root {
+    --main-blue-bg: #1A73E8; /* The primary blue background */
+    --light-bg-main: #FFFFFF; /* White for main content background and cards */
+    --accent-blue: #4285F4; /* Lighter blue for accents/buttons */
+    --dark-text: #202124; /* Dark text for light backgrounds */
+    --light-text: #5F6368; /* Secondary text for light backgrounds */
+    --border-light: #DADCE0; /* Subtle borders on light backgrounds */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+
+    /* QuantumBank specific colors (for alerts, etc.) */
+    --google-green: #34A853;
+    --google-red: #EA4335;
+    --google-yellow: #FBBC05;
+}
+
+/* Base Styles */
+html {
+    font-size: 17px;
+}
+
+body {
+    font-family: 'Google Sans', 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--main-blue-bg); /* Primary blue background for the entire page */
+    color: var(--dark-text); /* Default text color for light sections */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header/Top Bar */
+.main-header {
+    width: 100%;
+    background-color: var(--light-bg-main); /* White header */
+    padding: 20px 40px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* QuantumBank Logo Styling (Colorful Text Logo) */
+.main-header .logo {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 1.8em;
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+}
+/* Explicitly set colors for each letter for the colorful effect */
+.main-header .logo .g-text { color: var(--main-blue-bg); }
+.main-header .logo .p-text { color: var(--google-red); }
+.main-header .logo .a-text { color: var(--google-yellow); }
+.main-header .logo .y-text { color: var(--google-green); }
+
+
+.main-header .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+.main-header .nav-links li {
+    display: inline-block;
+}
+.main-header .nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+.main-header .nav-links a:hover {
+    background-color: rgba(66, 133, 244, 0.1); /* Light blue tint on hover */
+    color: var(--accent-blue);
+}
+.main-header .nav-links a i {
+    font-size: 1em;
+    color: var(--light-text);
+    transition: color 0.2s ease;
+}
+.main-header .nav-links a:hover i {
+    color: var(--accent-blue);
+}
+
+.main-header .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1em;
+    color: var(--light-text);
+}
+.main-header .user-profile i {
+    font-size: 1.5em;
+    color: var(--google-green);
+    background-color: rgba(52, 168, 83, 0.1);
+    border-radius: 50%;
+    padding: 6px;
+}
+
+/* Section Wrapper for full-width sections with content alignment */
+.section {
+    width: 100%;
+    padding: 60px 0; /* Vertical padding for sections */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Specific section background colors for admin.html */
+.section-blue {
+    background-color: var(--main-blue-bg);
+    color: var(--light-bg-main); /* White text on blue */
+}
+.section-white {
+    background-color: var(--light-bg-main);
+    color: var(--dark-text); /* Dark text on white */
+    border-bottom: 1px solid var(--border-light); /* Add separator */
+}
+
+
+.section-content {
+    max-width: 1000px; /* Max width for content within sections */
+    margin: 0 auto; /* Center content */
+    padding: 0 20px; /* Horizontal padding for content */
+    box-sizing: border-box;
+}
+
+/* Hero Section (specific to index.html) */
+.hero-section {
+    background-color: var(--main-blue-bg); /* Blue background for hero */
+    color: var(--light-bg-main); /* White text on blue */
+    padding: 80px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    width: 100%;
+    gap: 50px;
+}
+
+.hero-text {
+    text-align: left;
+    flex: 1;
+}
+
+.hero-text h2 {
+    font-size: 4em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--light-bg-main);
+    line-height: 1.1;
+    border-bottom: none;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-image {
+    flex: 0 0 auto;
+    position: relative;
+    width: 400px; /* Container for the logo image */
+    height: 400px; /* Container for the logo image */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styling for the actual logo image */
+.large-logo {
+    width: 100%; /* Make the image fill its container */
+    height: auto; /* Maintain aspect ratio */
+    max-width: 400px; /* Ensure it doesn't exceed its container size */
+    display: block; /* Remove extra space below image */
+    margin: 0 auto; /* Center the image within its container */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); /* Keep shadow for depth */
+    
+    /* Rounded corners for the logo image */
+    border-radius: 30px; /* Adjust this value for more or less rounding */
+    
+    /* Ensure the logo itself has a white background if it's transparent */
+    background-color: var(--light-bg-main); 
+}
+
+.accent-dot {
+    color: var(--accent-blue);
+}
+
+/* Card Styling (for elements that should appear as cards) */
+.card {
+    background-color: var(--light-bg-main); /* White card background */
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    color: var(--dark-text); /* Dark text on cards */
+}
+
+/* MetaMask Status Section (on admin.html and dashboard.html) */
+#metamask-status {
+    padding: 25px; /* Increased padding for overall appeal */
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background-color: var(--light-bg-main); /* White background */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* More prominent shadow for appeal */
+    color: var(--dark-text); /* Changed to dark text for main readability */
+    font-size: 1.1em; /* Increased base font size for the section */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically for better layout with more text */
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Increased gap for spacing */
+    width: 100%;
+    max-width: 400px; /* Adjusted max-width for better text wrapping */
+    text-align: center; /* Center text within the card */
+    margin: 20px auto; /* Adjust margin for proper spacing within sections */
+}
+
+#metamask-status i {
+    color: var(--accent-blue);
+    font-size: 2.2em; /* Significantly increased icon size */
+}
+#metamask-status p {
+    margin: 0; /* Remove default paragraph margin */
+    font-size: 1.1em; /* Increased font size for paragraph */
+    color: var(--dark-text); /* Ensure paragraph text is dark */
+}
+#metamask-status #status-text {
+    font-weight: 700; /* Make status text bolder */
+    font-size: 1.2em; /* Make status text larger */
+    color: var(--google-green); /* Default green for connected status */
+    display: block; /* Ensure it takes its own line if needed */
+}
+#metamask-status #status-text.red {
+    color: var(--google-red);
+}
+#metamask-status #account-address {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em; /* Increased font size for address */
+    color: var(--light-text); /* Secondary text color */
+    word-wrap: break-word; /* Ensures long addresses break words */
+    max-width: 100%; /* Ensure it respects parent width */
+}
+
+
+/* Admin Login Area (Specific to admin.html login form) */
+.admin-login-area {
+    background-color: var(--light-bg-main); /* White background for the form area */
+    padding: 40px; /* Increased padding for more space */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Slightly stronger shadow */
+    margin-top: 30px; /* Space from metamask status */
+    width: 100%;
+    max-width: 650px; /* Increased max width for a larger feel */
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box; /* Include padding in width */
+}
+.admin-login-area h2 {
+    font-size: 2.2em; /* Even larger heading */
+    color: var(--dark-text);
+    margin-top: 0; /* Remove default h2 margin */
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: 18px; /* More padding below heading */
+    margin-bottom: 35px; /* More space below heading */
+    display: flex; /* Align icon and text */
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* More space for icon */
+}
+.admin-login-area h2 i {
+    font-size: 1.5em; /* Larger size for the key icon */
+    color: var(--accent-blue); /* Color for the key icon */
+}
+
+.admin-login-area label {
+    font-size: 1.2em; /* Increased font size for label */
+    margin-bottom: 15px; /* More space below label */
+    text-align: center; /* Center the label */
+    color: var(--dark-text); /* Ensure label text is dark */
+}
+
+.admin-login-area input[type="text"] {
+    width: calc(100% - 24px); /* Adjust for padding */
+    max-width: 350px;
+    padding: 12px 12px; /* Larger padding */
+    margin: 8px auto 20px auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    font-family: 'Roboto', sans-serif; /* Keep consistent font */
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+/* Clearer inner shadow */
+}
+.admin-login-area input[type="text"]:focus {
+    border-color: var(--google-blue-accent);
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1), 0 0 0 4px var(--action-bg);
+    outline: none;
+
+
+}
+
+.form-card input[type="text"],
+.form-card input[type="number"] {
+    height: 55px;
+    width: 100%;
+    max-width: 500px;
+    padding: 12px 25px;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background-color: var(--light-bg-main);
+    color: var(--dark-text);
+    font-size: 1.4em;
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    margin: 10px auto 20px auto;
+    display: block;
+}
+
+.form-card input[type="text"]:focus,
+.form-card input[type="number"]:focus {
+    border-color: var(--accent-blue);
+    box-shadow: inset 0 1px 5px rgba(0,0,0,0.15), 0 0 0 5px rgba(66, 133, 244, 0.25);
+    outline: none;
+}
+
+.form-card label {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--dark-text);
+    margin-bottom: 5px;
+    display: block;
+    text-align: center;
+}
+
+
+.admin-login-area .main-button {
+    padding: 18px 38px; /* Even larger button padding */
+    font-size: 1.3em; /* Even larger button text */
+    min-width: 250px; /* Ensure button is sufficiently wide */
+    margin-top: 30px; /* More space above button */
+    border-radius: 35px; /* More rounded button */
+}
+
+/* Ensure messages below the form are also properly sized and spaced */
+#admin-login-message {
+    font-size: 1.2em; /* Even larger message text */
+    padding: 18px 25px; /* More padding for messages */
+    margin-top: 30px; /* Space above message */
+    width: calc(100% - 50px); /* Adjust width to fit within container */
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    text-align: center; /* Ensure message is centered */
+    font-weight: 600; /* Make message text bolder */
+}
+
+
+/* Main Buttons (Used across various pages) */
+.main-button {
+    background-color: var(--accent-blue);
+    color: var(--light-bg-main);
+    padding: 18px 40px;       /* more generous padding */
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.3em;         /* slightly larger text */
+    font-weight: 600;
+    min-width: 220px;         /* to keep consistent width */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin: 15px auto;
+}
+.main-button:hover {
+    background-color: #3B78E2;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+.main-button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.main-button:disabled {
+    background-color: #BDC1C6;
+    color: #80868B;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+.back-to-home-btn { /* Specific style for the back button on admin page */
+    margin-top: 40px;
+}
+
+
+/* Stats Section (index.html specific) */
+.stats-section {
+    background-image: url('../imgs/background.jpg'); /* Background image with dots */
+    background-color: #1A73E8; /* Fallback to a solid blue from the image */
+    background-size: cover; /* Cover the entire area */
+    background-repeat: no-repeat; /* Ensure it doesn't repeat if it's a large pattern */
+    background-position: center center; /* Center the background image */
+    color: var(--dark-text); /* Text on this section is dark for contrast */
+    padding: 60px 0;
+    border-top: 1px solid var(--main-blue-bg);
+    border-bottom: 1px solid var(--main-blue-bg);
+    text-align: center;
+}
+
+.stats-section h3 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--dark-text); /* Set to dark for visibility */
+    border-bottom: none;
+}
+
+.stats-section .section-subtitle {
+    font-size: 1.2em;
+    color: var(--dark-text); /* Set to dark for visibility */
+    opacity: 0.9; /* Slightly less opaque for subtitle */
+    margin-bottom: 40px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.stat-item {
+    background-color: var(--light-bg-main); /* Solid white background for cards for clear contrast */
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid var(--border-light); /* Standard light border */
+    color: var(--dark-text); /* Dark text for card content */
+}
+
+.stat-item .stat-number {
+    font-size: 2.5em;
+    font-weight: 700;
+    color: var(--accent-blue); /* Numbers can be accent blue as they are on white card */
+    margin-bottom: 8px;
+}
+
+.stat-item .stat-label {
+    font-size: 1.2em;
+    font-weight: 500;
+    color: var(--dark-text); /* Labels dark on white card */
+    margin-bottom: 10px;
+}
+
+.stat-item .stat-description {
+    font-size: 0.9em;
+    color: var(--light-text); /* Secondary dark text for description */
+    opacity: 1; /* Ensure full opacity */
+    line-height: 1.4;
+}
+
+/* More Ways Section (index.html specific) */
+.ways-section {
+    background-color: var(--light-bg-main);
+    color: var(--dark-text);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border-light);
+}
+
+.ways-section h3 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--dark-text);
+    border-bottom: none;
+}
+
+.ways-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    position: relative;
+    padding: 20px;
+}
+
+.method-item {
+    background-color: var(--light-bg-main); /* White card */
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+    border: 1px solid var(--border-light);
+}
+
+.method-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Styling for the new image-based method icons */
+.method-icon {
+    width: 60px; /* Adjust size as needed */
+    height: 60px; /* Adjust size as needed */
+    object-fit: contain; /* Ensures the image scales properly within its bounds */
+}
+
+.w-logo-bg-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background-color: transparent;
+    opacity: 0.1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8em;
+    color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 0;
+}
+.w-logo-bg-placeholder::before {
+    content: "W";
+    font-family: 'Google Sans', sans-serif;
+    font-size: 8em;
+    color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+
+.method-item span {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+
+.action-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
+}
+
+.action-item {
+    background-color: var(--light-bg-main); /* White card */
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
+}
+
+.action-item:hover {
+    background-color: rgba(66, 133, 244, 0.05);
+}
+
+.action-item i {
+    color: var(--accent-blue);
+    font-size: 1.2em;
+}
+
+.action-item span {
+    font-size: 1em;
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+
+/* App Download Section (index.html specific) */
+.app-download-section {
+    background-color: var(--main-blue-bg); /* Blue background for app download section */
+    color: var(--light-bg-main); /* White text on blue */
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.app-text-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: left;
+}
+
+.app-text-content h3 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--light-bg-main);
+    line-height: 1.1;
+    border-bottom: none;
+}
+
+.app-text-content p {
+    font-size: 1.0em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.app-mockup {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-mockup-placeholder {
+    width: 250px;
+    height: 500px;
+    background-color: var(--light-bg-main); /* White background for the mockup */
+    border: 10px solid var(--border-light);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: block;
+}
+
+.mockup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will make the image cover the entire placeholder area, cropping if necessary */
+    border-radius: 20px; /* Apply border-radius to the image itself */
+    display: block;
+}
+
+.buy-now-button {
+    background-color: var(--google-green);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.buy-now-button:hover {
+    background-color: #2E8B57;
+    transform: translateY(-2px);
+}
+
+
+/* Footer */
+.main-footer {
+    width: 100%;
+    background-color: var(--light-bg-main); /* White footer */
+    padding: 40px 40px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    color: var(--light-text);
+    font-size: 0.9em;
+    margin-top: auto;
+    border-top: 1px solid var(--border-light);
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-footer .logo .g-text,
+.logo-footer .logo .p-text,
+.logo-footer .logo .a-text,
+.logo-footer .logo .y-text {
+    color: var(--dark-text);
+}
+
+.main-footer p {
+    color: var(--light-text);
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.social-icons {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.social-icons a {
+    color: var(--accent-blue); /* Blue social icons */
+    font-size: 1.8em;
+    transition: transform 0.2s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.footer-legal {
+    font-size: 0.85em;
+    color: var(--light-text);
+}
+
+
+/* General Headings and Paragraphs (default for light backgrounds) */
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--dark-text);
+    letter-spacing: -0.5px;
+}
+h2 {
+    font-size: 1.8em;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+h3 {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: var(--dark-text);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.0em;
+    color: var(--light-text);
+}
+
+
+/* MetaMask Status Box (on admin.html and dashboard.html where not styled by specific ID) */
+/* This specific rule targets the #metamask-status div used on other pages and within sections */
+/* This section is updated for the admin.html specific request */
+#metamask-status {
+    padding: 25px; /* Increased padding for overall appeal */
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    background-color: var(--light-bg-main); /* White background for card */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* More prominent shadow */
+    color: var(--dark-text); /* Ensure text is dark for readability */
+    font-size: 1.1em; /* Increased base font size for the section */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically for better layout */
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Increased gap for spacing */
+    width: 100%;
+    max-width: 400px; /* Adjusted max-width for better text wrapping */
+    text-align: center; /* Center text within the card */
+    margin: 20px auto; /* Adjust margin for proper spacing within sections */
+}
+
+#metamask-status i {
+    color: var(--accent-blue);
+    font-size: 2.2em; /* Significantly increased icon size */
+}
+#metamask-status p {
+    margin: 0; /* Remove default paragraph margin */
+    font-size: 1.1em; /* Increased font size for paragraph */
+    color: var(--dark-text); /* Ensure paragraph text is dark */
+}
+#metamask-status #status-text {
+    font-weight: 700; /* Make status text bolder */
+    font-size: 1.2em; /* Make status text larger */
+    color: var(--google-green); /* Default green for connected status */
+    display: block; /* Ensure it takes its own line if needed */
+}
+#metamask-status #status-text.red {
+    color: var(--google-red);
+}
+#metamask-status #account-address {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em; /* Increased font size for address */
+    color: var(--light-text); /* Secondary text color */
+    word-wrap: break-word; /* Ensures long addresses break words */
+    max-width: 100%; /* Ensure it respects parent width */
+}
+
+
+/* Admin Content Section Styling */
+/* This ensures main content of admin page (after login) gets appropriate background/padding */
+#admin-content {
+    width: 100%;
+}
+#admin-content .section-content {
+    /* Padding already defined by .section-content */
+}
+
+/* Specific styling for forms/tables that are 'cards' within sections on admin/dashboard */
+.form-card {
+    background-color: var(--light-bg-main);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    max-width: 500px;
+    margin: 30px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid var(--border-light);
+}
+
+.table-card {
+    background-color: var(--light-bg-main);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    overflow-x: auto; /* Enable horizontal scroll for tables on small screens */
+    margin-top: 30px;
+    border: 1px solid var(--border-light);
+}
+.table-card table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0;
+    box-shadow: none;
+    border: none;
+}
+/* Table headers/data within these cards */
+.table-card th, .table-card td {
+    border-bottom: 1px solid var(--border-light);
+    color: var(--dark-text);
+}
+.table-card th {
+    background-color: rgba(66, 133, 244, 0.1);
+    color: var(--accent-blue);
+}
+
+
+/* More Ways Section (index.html specific) */
+.ways-section {
+    background-color: var(--light-bg-main);
+    color: var(--dark-text);
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid var(--border-light);
+}
+
+.ways-section h3 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 40px;
+    color: var(--dark-text);
+    border-bottom: none;
+}
+
+.ways-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.payment-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    position: relative;
+    padding: 20px;
+}
+
+.method-item {
+    background-color: var(--light-bg-main); /* White card */
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 120px;
+    height: 120px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease;
+    border: 1px solid var(--border-light);
+}
+
+.method-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Styling for the new image-based method icons */
+.method-icon {
+    width: 60px; /* Adjust size as needed */
+    height: 60px; /* Adjust size as needed */
+    object-fit: contain; /* Ensures the image scales properly within its bounds */
+}
+
+.w-logo-bg-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px;
+    background-color: transparent;
+    opacity: 0.1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8em;
+    color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 0;
+}
+.w-logo-bg-placeholder::before {
+    content: "W";
+    font-family: 'Google Sans', sans-serif;
+    font-size: 8em;
+    color: rgba(0, 0, 0, 0.05);
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+
+.method-item span {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+
+.action-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
+}
+
+.action-item {
+    background-color: var(--light-bg-main); /* White card */
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
+}
+
+.action-item:hover {
+    background-color: rgba(66, 133, 244, 0.05);
+}
+
+.action-item i {
+    color: var(--accent-blue);
+    font-size: 1.2em;
+}
+
+.action-item span {
+    font-size: 1em;
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+
+/* App Download Section (index.html specific) */
+.app-download-section {
+    background-color: var(--main-blue-bg); /* Blue background for app download section */
+    color: var(--light-bg-main); /* White text on blue */
+    border-top: 1px solid var(--border-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.app-text-content {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    text-align: left;
+}
+
+.app-text-content h3 {
+    font-size: 2.8em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--light-bg-main);
+    line-height: 1.1;
+    border-bottom: none;
+}
+
+.app-text-content p {
+    font-size: 1.0em;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 15px;
+}
+
+.app-mockup {
+    position: relative;
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-mockup-placeholder {
+    width: 250px;
+    height: 500px;
+    background-color: var(--light-bg-main); /* White background for the mockup */
+    border: 10px solid var(--border-light);
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    display: block;
+}
+
+.mockup-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This will make the image cover the entire placeholder area, cropping if necessary */
+    border-radius: 20px; /* Apply border-radius to the image itself */
+    display: block;
+}
+
+.buy-now-button {
+    background-color: var(--google-green);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 30px;
+    font-size: 1.2em;
+    font-weight: 700;
+    box-shadow: 0 5px 15px rgba(52, 168, 83, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.buy-now-button:hover {
+    background-color: #2E8B57;
+    transform: translateY(-2px);
+}
+
+
+/* Footer */
+.main-footer {
+    width: 100%;
+    background-color: var(--light-bg-main); /* White footer */
+    padding: 40px 40px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.08);
+    text-align: center;
+    color: var(--light-text);
+    font-size: 0.9em;
+    margin-top: auto;
+    border-top: 1px solid var(--border-light);
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-footer .logo .g-text,
+.logo-footer .logo .p-text,
+.logo-footer .logo .a-text,
+.logo-footer .logo .y-text {
+    color: var(--dark-text);
+}
+
+.main-footer p {
+    color: var(--light-text);
+    margin-bottom: 5px;
+    font-size: 0.95em;
+}
+
+.social-icons {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    gap: 25px;
+}
+
+.social-icons a {
+    color: var(--accent-blue); /* Blue social icons */
+    font-size: 1.8em;
+    transition: transform 0.2s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.footer-legal {
+    font-size: 0.85em;
+    color: var(--light-text);
+}
+
+
+/* General Headings and Paragraphs (default for light backgrounds) */
+h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--dark-text);
+    letter-spacing: -0.5px;
+}
+h2 {
+    font-size: 1.8em;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+h3 {
+    font-size: 1.3em;
+    font-weight: 500;
+    color: var(--dark-text);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.0em;
+    color: var(--light-text);
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text {
+        text-align: center;
+    }
+    .hero-image {
+        margin-top: 40px;
+    }
+    .ways-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+    .payment-methods {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        width: 100%;
+        max-width: 400px;
+    }
+    .action-items {
+        width: 100%;
+        max-width: 400px;
+    }
+    .app-download-section {
+        flex-direction: column;
+        gap: 40px;
+    }
+    .app-text-content {
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 768px) {
+    html { font-size: 15px; }
+    .main-header { padding: 15px 20px; }
+    .main-header .nav-links { gap: 15px; }
+    
+    .hero-section { padding: 50px 20px; }
+    .hero-text h2 { font-size: 3em; }
+    .hero-text p { font-size: 1.2em; }
+    .large-logo { width: 300px; height: 300px; }
+
+
+    .section-content { padding: 0 15px; }
+    .status-actions-section { padding: 30px 0; }
+    #metamask-status { padding: 15px; font-size: 1em; } /* Adjusted for smaller screens */
+    #metamask-status i { font-size: 1.8em; } /* Adjusted icon size for smaller screens */
+    #metamask-status p { font-size: 1em; }
+    #metamask-status #status-text { font-size: 1.1em; }
+    #metamask-status #account-address { font-size: 0.9em; }
+
+    .main-button { padding: 10px 20px; font-size: 1em; }
+    
+    .stats-section, .ways-section, .app-download-section {
+        padding: 40px 0;
+    }
+    .stats-section h3, .ways-section h3, .app-text-content h3 {
+        font-size: 2.2em;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .stat-item { padding: 20px; }
+    .stat-item .stat-number { font-size: 2em; }
+    .stat-item .stat-label { font-size: 1.1em; }
+
+    .method-item { width: 100px; height: 100px; }
+    .method-icon { width: 50px; height: 50px; }
+    .action-item span { font-size: 0.95em; }
+
+    .app-mockup-placeholder { max-width: 220px; height: 440px; }
+    .buy-now-button { padding: 12px 30px; font-size: 1.1em; }
+
+    .main-footer { padding: 30px 20px; }
+}
+
+@media (max-width: 500px) {
+    html { font-size: 14px; }
+    .main-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .main-header .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; gap: 8px; }
+    .main-header .nav-links a { padding: 6px 10px; font-size: 0.9em; }
+    .main-header .user-profile { width: 100%; justify-content: center; }
+    
+    .hero-section { padding: 30px 15px; }
+    .hero-text h2 { font-size: 2.5em; }
+    .hero-text p { font-size: 1em; }
+    .large-logo { width: 250px; height: 250px; }
+
+
+    .section-content { padding: 0 10px; }
+    .status-actions-section { padding: 20px 0; }
+    #metamask-status { padding: 12px; font-size: 0.9em; } /* Further adjusted for very small screens */
+    #metamask-status i { font-size: 1.5em; } /* Adjusted icon size for very small screens */
+    #metamask-status p { font-size: 0.9em; }
+    #metamask-status #status-text { font-size: 1em; }
+    #metamask-status #account-address { font-size: 0.8em; }
+
+
+    .main-button { padding: 8px 12px; font-size: 0.9em; margin: 5px; }
+    
+    .stats-section, .ways-section, .app-download-section {
+        padding: 30px 0;
+    }
+    .stats-section h3, .ways-section h3, .app-text-content h3 {
+        font-size: 2em;
+    }
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    .stat-item { padding: 15px; }
+    .stat-item .stat-number { font-size: 2em; }
+    .stat-item .stat-label { font-size: 0.9em; }
+
+    .payment-methods {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .method-item { width: 80px; height: 80px; padding: 10px; }
+    .method-icon { width: 40px; height: 40px; }
+    .action-item { padding: 12px; }
+    .action-item i { font-size: 1em; }
+    .action-item span { font-size: 0.85em; }
+
+    .app-mockup-placeholder { max-width: 180px; height: 360px; }
+    .buy-now-button { padding: 8px 20px; font-size: 0.9em; }
+
+    .main-footer { padding: 15px 10px; }
+    .social-icons { gap: 10px; }
+    .social-icons a { font-size: 1.2em; }
+}
+
+/* Modern Quick Actions Section */
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--light-bg-main);
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 30px;
+  }
+  
+  .quick-action-item {
+    background-color: var(--light-bg-main);
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.95em;
+    color: var(--dark-text);
+  }
+  
+  .quick-action-item i {
+    font-size: 1.8em;
+    color: var(--accent-blue);
+  }
+  
+  .quick-action-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  }
+  
+  .quick-action-item span {
+    margin-top: 5px;
+    font-weight: 500;
+    color: var(--dark-text);
+  }

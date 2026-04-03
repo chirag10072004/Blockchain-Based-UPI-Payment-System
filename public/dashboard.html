@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitPay - User Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+    <script src="js/html5-qrcode.min.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <span class="g-text">B</span><span class="p-text">it</span><span class="a-text">P</span><span class="y-text">ay</span>
+        </a>
+        <nav class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+            <li><a href="admin.html"><i class="fas fa-user-cog"></i> Admin</a></li>
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        </nav>
+        <div class="user-profile">
+            <i class="fas fa-user-circle"></i>
+            <span id="header-account-address">Not Connected</span>
+        </div>
+    </header>
+
+    <div class="section section-blue">
+        <div class="section-content">
+            <h1>Your Dashboard</h1>
+            <div id="metamask-status" class="card">
+                <i class="fab fa-ethereum"></i>
+                <p>MetaMask Status: <span id="status-text">Not Connected</span></p>
+                <span id="account-address"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-white">
+        <div class="section-content">
+            <h2><i class="fas fa-coins"></i> Your Balance: <span id="user-balance">0 ETH</span></h2>
+        </div>
+    </div>
+
+    <div class="section section-blue">
+        <div class="section-content">
+            <h2>Quick Actions</h2>
+            <div class="quick-actions-grid card">
+                <button class="quick-action-item" id="quick-scan-qr">
+                    <i class="fas fa-qrcode"></i>
+                    <span>Scan any QR code</span>
+                </button>
+                <button class="quick-action-item" id="quick-pay-contacts">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Pay contacts</span>
+                </button>
+                <button class="quick-action-item" id="quick-pay-phone">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Pay phone number</span>
+                </button>
+                <button class="quick-action-item" id="quick-bank-transfer">
+                    <i class="fas fa-bank"></i>
+                    <span>Bank transfer</span>
+                </button>
+                <button class="quick-action-item" id="quick-pay-upi">
+                    <i class="fas fa-at"></i>
+                    <span>Pay UPI ID or number</span>
+                </button>
+                <button class="quick-action-item" id="quick-self-transfer">
+                    <i class="fas fa-exchange-alt"></i>
+                    <span>Self transfer</span>
+                </button>
+                <button class="quick-action-item" id="quick-pay-bills">
+                    <i class="fas fa-receipt"></i>
+                    <span>Pay bills</span>
+                </button>
+                <button class="quick-action-item" id="quick-mobile-recharge">
+                    <i class="fas fa-phone-square-alt"></i>
+                    <span>Mobile recharge</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-white">
+        <div class="section-content">
+            <h2><i class="fas fa-paper-plane"></i> Send Money</h2>
+            <form id="send-money-form" class="form-card"> <label for="recipient-address">Recipient Address:</label>
+                <input type="text" id="recipient-address" placeholder="0x..." required>
+                <label for="amount">Amount (ETH):</label>
+                <input type="number" id="amount" step="0.0001" min="0.0001" required>
+                <button type="submit" class="main-button"><i class="fas fa-arrow-circle-right"></i> Send</button>
+            </form>
+            <p id="send-money-message"></p>
+
+            <div class="qr-code-upload-section card"> <h3><i class="fas fa-qrcode"></i> Upload QR Code from Image</h3>
+                <input type="file" id="qr-code-file-input" accept="image/*" style="display: none;">
+                <button id="upload-qr-button" class="main-button"><i class="fas fa-upload"></i> Upload QR Code</button>
+                <p id="qr-scan-message"></p>
+            </div>
+
+            <div id="qr-reader-section" class="card"> <h3><i class="fas fa-video"></i> Scan any QR code</h3>
+                <button id="start-webcam-scan-button" class="main-button"><i class="fas fa-play"></i> Start Scan</button>
+                <button id="stop-webcam-scan-button" style="display: none;" class="main-button"><i class="fas fa-stop"></i> Stop Webcam Scan</button>
+                <div id="qr-reader" style="width: 100%;"></div>
+                <p id="webcam-scan-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section section-blue">
+        <div class="section-content">
+            <h2><i class="fas fa-history"></i> Transaction History</h2>
+            <div class="table-card card"> <table id="transaction-history-table">
+                    <thead>
+                        <tr>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Amount (ETH)</th>
+                            <th>Timestamp</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <p id="no-transactions-message" style="display: none;">No transactions yet.</p>
+        </div>
+    </div>
+
+    <div class="section section-white">
+        <div class="section-content">
+            <button onclick="window.location.href='index.html'" class="main-button back-to-home-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 BitPay. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+    <script src="js/web3_init.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Update header account address
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerAccountAddress = document.getElementById('header-account-address');
+            const updateHeaderAccount = () => {
+                if (window.ethereum && window.ethereum.selectedAddress) {
+                    headerAccountAddress.textContent = window.ethereum.selectedAddress.substring(0, 8) + '...';
+                } else if (accounts && accounts.length > 0) {
+                    headerAccountAddress.textContent = accounts[0].substring(0, 8) + '...';
+                } else {
+                    headerAccountAddress.textContent = 'Not Connected';
+                }
+            };
+            window.addEventListener('web3_initialized', updateHeaderAccount);
+            if (window.ethereum) {
+                window.ethereum.on('accountsChanged', updateHeaderAccount);
+            }
+            updateHeaderAccount(); // Initial call
+
+            // New: Handle "Scan any QR code" click to trigger webcam scan or file upload
+            const quickScanQrButton = document.getElementById('quick-scan-qr');
+            if (quickScanQrButton) {
+                quickScanQrButton.addEventListener('click', () => {
+                    // You can decide which QR scan method to prioritize here.
+                    // For example, if webcam is preferred:
+                    const startWebcamBtn = document.getElementById('start-webcam-scan-button');
+                    if (startWebcamBtn) {
+                        startWebcamBtn.click(); // Programmatically click the start webcam button
+                        // Optionally scroll to the webcam section if it's far down
+                        startWebcamBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else {
+                        // Fallback to file input if webcam not available or as a secondary option
+                        const uploadQrInput = document.getElementById('qr-code-file-input');
+                        if (uploadQrInput) {
+                            uploadQrInput.click();
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

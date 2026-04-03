@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitPay - Admin Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <span class="g-text">B</span><span class="p-text">it</span><span class="a-text">P</span><span class="y-text">ay</span>
+        </a>
+        <nav class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+            <li><a href="admin.html"><i class="fas fa-user-cog"></i> Admin</a></li>
+            <li><a href="dashboard.html" style="display: none;"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        </nav>
+        <div class="user-profile">
+            <i class="fas fa-user-circle"></i>
+            <span id="header-account-address">Not Connected</span>
+        </div>
+    </header>
+
+    <div class="section section-blue">
+        <div class="section-content">
+            <h1>Admin Panel (Bank)</h1>
+            <div id="metamask-status" class="card">
+                <i class="fab fa-ethereum"></i>
+                <p>MetaMask Status: <span id="status-text">Not Connected</span></p>
+                <span id="account-address"></span>
+            </div>
+            <div id="admin-login-form-area" class="admin-login-area"> 
+                <h2><i class="fas fa-key"></i> Admin Login</h2>
+                <label for="admin-input-address">Admin MetaMask Address:</label>
+                <input type="text" id="admin-input-address" placeholder="0x..." required>
+                <button id="admin-login-btn" class="main-button"><i class="fas fa-sign-in-alt"></i> Login as Admin</button>
+                <p id="admin-login-message"></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-content" style="display: none;">
+        <div class="section section-white">
+            <div class="section-content">
+                <h2><i class="fas fa-user-plus"></i> Register New User</h2>
+                <form id="register-user-form" class="form-card">
+                    <label for="new-user-address">User Address to Register:</label>
+                    <div class="admin-login-area" style="box-shadow: none; padding: 0; margin: 0;">
+                        <input type="text" id="new-user-address" placeholder="0x..." required>
+                    </div>
+                    <button type="submit" class="main-button"><i class="fas fa-user-check"></i> Register User</button>
+                </form>
+                <p id="register-user-message"></p>
+            </div>
+        </div>
+
+        <div class="section section-blue">
+            <div class="section-content">
+                <h2><i class="fas fa-users"></i> Registered Users</h2>
+                <div class="table-card card">
+                    <table id="registered-users-table">
+                        <thead>
+                            <tr>
+                                <th>Address</th>
+                                <th>Balance (ETH)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="no-registered-users-message" style="display: none;">No registered users found.</p>
+            </div>
+        </div>
+
+        <div class="section section-white">
+            <div class="section-content">
+                <h2><i class="fas fa-exchange-alt"></i> All Transactions</h2>
+                <div class="table-card card">
+                    <table id="all-transactions-table">
+                        <thead>
+                            <tr>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Amount (ETH)</th>
+                                <th>Timestamp</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <p id="no-all-transactions-message" style="display: none;">No transactions yet.</p>
+            </div>
+        </div>
+
+        <div class="section section-blue">
+            <div class="section-content">
+                <h2><i class="fas fa-plus-circle"></i> Deposit Ether for User (Fund Account)</h2>
+                <form id="deposit-form" class="form-card">
+                    <label for="deposit-user-address">User Address:</label>
+                    <input type="text" id="deposit-user-address" placeholder="0x..." required>
+        
+                    <label for="deposit-amount">Amount (ETH):</label>
+                    <input type="number" id="deposit-amount" step="0.0001" min="0.0001" required>
+        
+                    <button type="submit" class="main-button">
+                        <i class="fas fa-hand-holding-usd"></i> Deposit
+                    </button>
+                </form>
+                <p id="deposit-message"></p>
+            </div>
+        </div>
+
+        <button onclick="window.location.href='index.html'" class="main-button back-to-home-btn"><i class="fas fa-arrow-circle-left"></i> Back to Home</button>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 BitPay. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+    <script src="js/web3_init.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Update header account address
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerAccountAddress = document.getElementById('header-account-address');
+            const updateHeaderAccount = () => {
+                if (window.ethereum && window.ethereum.selectedAddress) {
+                    headerAccountAddress.textContent = window.ethereum.selectedAddress.substring(0, 8) + '...';
+                } else if (accounts && accounts.length > 0) {
+                    headerAccountAddress.textContent = accounts[0].substring(0, 8) + '...';
+                } else {
+                    headerAccountAddress.textContent = 'Not Connected';
+                }
+            };
+            window.addEventListener('web3_initialized', updateHeaderAccount);
+            if (window.ethereum) {
+                window.ethereum.on('accountsChanged', updateHeaderAccount);
+            }
+            updateHeaderAccount(); // Initial call
+        });
+    </script>
+</body>
+</html>

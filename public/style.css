@@ -1,0 +1,477 @@
+/* Import Google Fonts for a clean, modern look */
+@import url('https://fonts.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap'); /* For monospaced addresses */
+
+/* Define Google-inspired color palette */
+:root {
+    --google-blue-main: #1A73E8; /* The prominent blue background from the reference */
+    --google-blue-accent: #4285F4; /* Lighter blue for accents/buttons */
+    --google-green: #34A853;
+    --google-yellow: #FBBC05;
+    --google-red: #EA4335;
+    --light-bg: #FFFFFF; /* For cards and header */
+    --dark-text: #202124;
+    --light-text: #5F6368; /* For secondary text */
+    --border-color: #DADCE0; /* Subtle borders */
+    --card-bg-light: #F8F9FA; /* Very light gray for internal cards/sections */
+    --action-bg: #E8F0FE; /* Light blue for active states/backgrounds */
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-medium: rgba(0, 0, 0, 0.12);
+    --shadow-strong: rgba(0, 0, 0, 0.2);
+}
+
+/* Base Styles */
+html {
+    font-size: 17px; /* Base font size for desktop-first approach */
+}
+
+body {
+    font-family: 'Google Sans', 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: var(--google-blue-main); /* Exact blue background */
+    color: var(--dark-text); /* Default text color, will be overridden in light sections */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Smoother fonts */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header/Top Bar - Mimics app's top bar */
+.main-header {
+    width: 100%;
+    background-color: var(--light-bg);
+    padding: 20px 40px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* G Pay Logo Styling */
+.main-header .logo {
+    font-family: 'Google Sans', sans-serif;
+    font-size: 1.8em; /* Richer logo size */
+    font-weight: 700;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.5px;
+    white-space: nowrap; /* Prevent logo text from wrapping */
+}
+.main-header .logo .g-text { color: var(--google-blue-accent); }
+.main-header .logo .p-text { color: var(--google-red); }
+.main-header .logo .a-text { color: var(--google-yellow); }
+.main-header .logo .y-text { color: var(--google-green); }
+
+.main-header .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px;
+}
+.main-header .nav-links li {
+    display: inline-block;
+}
+.main-header .nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 15px; /* Larger padding */
+    border-radius: 8px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+.main-header .nav-links a:hover {
+    background-color: var(--action-bg);
+    color: var(--google-blue-accent);
+}
+.main-header .nav-links a i {
+    font-size: 1em;
+    color: var(--light-text);
+    transition: color 0.2s ease;
+}
+.main-header .nav-links a:hover i {
+    color: var(--google-blue-main);
+}
+
+.main-header .user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1em;
+    color: var(--light-text);
+}
+.main-header .user-profile i {
+    font-size: 1.5em; /* Larger user icon */
+    color: var(--google-green);
+    background-color: rgba(52, 168, 83, 0.1);
+    border-radius: 50%;
+    padding: 6px;
+}
+
+/* Main Content Area - Large White Card */
+.container {
+    background-color: var(--light-bg);
+    padding: 40px; /* Increased padding */
+    border-radius: 12px; /* Consistent rounding */
+    box-shadow: 0 6px 20px var(--shadow-medium);
+    text-align: center;
+    width: 90%;
+    max-width: 900px; /* Wider for web-based layout */
+    margin: 30px auto; /* More margin */
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+}
+
+/* Headings */
+h1 {
+    font-size: 2.5em; /* Larger H1 */
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--dark-text);
+    letter-spacing: -0.5px;
+}
+h2 {
+    font-size: 1.8em; /* Larger H2 */
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+    margin-top: 35px;
+    color: var(--dark-text);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+h3 { /* For sub-sections like QR scan options */
+    font-size: 1.3em; /* Larger H3 */
+    font-weight: 500;
+    color: var(--light-text);
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 1.0em; /* Base paragraph size */
+    color: var(--light-text);
+}
+
+/* MetaMask Status Box - cleaner */
+#metamask-status {
+    margin: 25px auto;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    background-color: var(--card-bg-light); /* Light background for status box */
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    color: var(--light-text);
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+}
+#metamask-status i {
+    color: var(--google-blue-accent);
+    font-size: 1.3em;
+}
+#metamask-status #status-text {
+    font-weight: 500;
+    color: var(--google-green);
+}
+#metamask-status #status-text.red {
+    color: var(--google-red);
+}
+#metamask-status #account-address {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 0.9em;
+    color: var(--light-text);
+}
+
+/* Buttons - Rounded, colorful, more prominent */
+button {
+    background-color: var(--google-blue-accent); /* Primary blue for main buttons */
+    color: white;
+    padding: 14px 28px; /* Larger padding */
+    border: none;
+    border-radius: 28px; /* More pronounced pill-shape */
+    cursor: pointer;
+    font-size: 1.1em; /* Larger text */
+    margin: 10px;
+    box-shadow: 0 3px 6px var(--shadow-light);
+    transition: all 0.2s ease;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+button i {
+    font-size: 1.2em;
+}
+
+button:hover {
+    background-color: #3B78E2; /* Slightly darker blue on hover */
+    box-shadow: 0 5px 10px var(--shadow-medium);
+    transform: translateY(-1px);
+}
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px var(--shadow-light);
+}
+button:disabled {
+    background-color: #BDC1C6;
+    color: #80868B;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Form Inputs - Clean and simple */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--light-text);
+    font-size: 1em;
+    text-align: left;
+    width: 100%;
+    max-width: 350px; /* Constrain width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: calc(100% - 24px); /* Adjust for padding */
+    max-width: 350px;
+    padding: 12px 12px; /* Larger padding */
+    margin: 8px auto 20px auto;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+    font-family: 'Roboto', sans-serif; /* Keep consistent font */
+    font-size: 1em;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: var(--google-blue-accent);
+    box-shadow: inset 0 1px 4px rgba(0,0,0,0.1), 0 0 0 4px var(--action-bg);
+    outline: none;
+}
+
+/* Specific Section Layouts - Card-like */
+.dashboard-section, .admin-section {
+    background-color: var(--card-bg); /* Use card background for inner sections */
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border: 1px solid var(--border-color);
+}
+
+/* Forms within sections */
+#send-money-form, #deposit-form, #register-user-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+#send-money-form button, #deposit-form button, #register-user-form button {
+    margin-top: 20px;
+    align-self: center;
+    width: auto;
+    min-width: 150px;
+}
+
+/* Messages */
+#send-money-message, #deposit-message, #register-user-message, #qr-scan-message, #webcam-scan-message, #admin-login-message {
+    margin-top: 18px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1em;
+    color: var(--dark-text);
+    background-color: var(--card-bg-light); /* Lighter background for message boxes */
+    border: 1px solid var(--border-color);
+}
+
+/* Specific message colors based on Google's palette */
+#send-money-message.green, #register-user-message.green, #deposit-message.green, #qr-scan-message.green, #webcam-scan-message.green {
+    background-color: rgba(52, 168, 83, 0.1);
+    border-color: var(--google-green);
+    color: var(--google-green);
+}
+#send-money-message.blue, #register-user-message.blue, #deposit-message.blue, #qr-scan-message.blue, #webcam-scan-message.blue {
+    background-color: rgba(66, 133, 244, 0.1);
+    border-color: var(--google-blue-accent);
+    color: var(--google-blue-accent);
+}
+#send-money-message.red, #register-user-message.red, #deposit-message.red, #qr-scan-message.red, #webcam-scan-message.red, #admin-login-message {
+    background-color: rgba(234, 67, 53, 0.1);
+    border-color: var(--google-red);
+    color: var(--google-red);
+}
+#send-money-message.orange, #qr-scan-message.orange, #webcam-scan-message.orange {
+    background-color: rgba(251, 188, 5, 0.1);
+    border-color: var(--google-yellow);
+    color: var(--google-yellow);
+}
+
+
+/* Tables - Clean, app-like */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--light-bg);
+    border-radius: 8px; /* Slightly less rounded than container */
+    overflow: hidden;
+    box-shadow: 0 1px 3px var(--shadow-light);
+    border: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+th, td {
+    padding: 12px 15px; /* More padding */
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--dark-text);
+}
+
+th {
+    background-color: var(--action-bg); /* Light blue header */
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--google-blue-accent);
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:hover {
+    background-color: rgba(66, 133, 244, 0.05); /* Subtle blue hover */
+}
+
+#no-transactions-message, #no-registered-users-message, #no-all-transactions-message {
+    margin-top: 20px;
+    font-style: italic;
+    color: var(--light-text);
+}
+
+/* Footer */
+.main-footer {
+    width: 100%;
+    background-color: var(--light-bg);
+    padding: 15px 40px; /* Increased padding */
+    box-shadow: 0 -2px 8px var(--shadow-light);
+    text-align: center;
+    color: var(--light-text);
+    font-size: 0.9em;
+    margin-top: auto;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- New Styles for Google Pay Quick Actions --- */
+.quick-actions-section {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 25px; /* Spacing between circular buttons */
+    padding: 20px 0;
+}
+
+.quick-action-button {
+    width: 100px; /* Fixed size for circular button */
+    height: 100px;
+    border-radius: 50%; /* Make it round */
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--dark-text);
+    font-size: 0.9em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.quick-action-button:hover {
+    box-shadow: 0 4px 10px var(--shadow-medium);
+    transform: translateY(-2px);
+    background-color: var(--action-bg);
+}
+
+.quick-action-button i {
+    font-size: 2.2em; /* Large icon inside the circle */
+    margin-bottom: 8px;
+    color: var(--google-blue-accent); /* Blue icon color */
+}
+
+/* --- QR Reader Specific Styles --- */
+#qr-reader-section #qr-reader {
+    background-color: var(--card-bg); /* Match card background */
+    border: 1px solid var(--border-color);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.05);
+    padding: 15px;
+    border-radius: 12px;
+    width: calc(100% - 30px);
+    max-width: 450px;
+    margin: 15px auto;
+}
+#qr-reader video {
+    border-radius: 8px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    html { font-size: 15px; } /* Slightly smaller base font for tablets/laptops */
+    .main-header { padding: 15px 20px; }
+    .main-header .nav-links { gap: 15px; }
+    .container { padding: 25px; max-width: 600px; }
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+    button { padding: 12px 20px; font-size: 1em; }
+    .quick-action-button { width: 90px; height: 90px; font-size: 0.85em; }
+    .quick-action-button i { font-size: 1.8em; }
+}
+
+@media (max-width: 500px) {
+    html { font-size: 14px; } /* Even smaller for very small screens */
+    .main-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .main-header .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; gap: 8px; }
+    .main-header .nav-links a { padding: 6px 10px; font-size: 0.9em; }
+    .main-header .user-profile { width: 100%; justify-content: center; }
+    .container { padding: 15px; margin: 15px auto; }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.3em; }
+    button { padding: 10px 15px; font-size: 0.9em; margin: 5px; }
+    input[type="text"], input[type="number"] { max-width: none; width: calc(100% - 20px); }
+    th, td { padding: 8px 10px; font-size: 0.8em; }
+    .quick-action-button { width: 80px; height: 80px; font-size: 0.8em; gap: 5px;}
+    .quick-action-button i { font-size: 1.6em; }
+}

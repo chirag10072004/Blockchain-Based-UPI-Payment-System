@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BitPay - Registration</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo">
+            <span class="g-text">B</span><span class="p-text">it</span><span class="a-text">P</span><span class="y-text">ay</span>
+        </a>
+        <nav class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+            <li><a href="admin.html"><i class="fas fa-user-cog"></i> Admin</a></li>
+            <li><a href="dashboard.html" style="display: none;"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        </nav>
+        <div class="user-profile">
+            <i class="fas fa-user-circle"></i>
+            <span id="header-account-address">Not Connected</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Account Registration</h1>
+        <p>Register your MetaMask address to use BitPay services.</p>
+        <div id="metamask-status">
+            <i class="fab fa-ethereum"></i>
+            <p>MetaMask Status: <span id="status-text">Not Connected</span></p>
+            <span id="account-address"></span>
+        </div>
+        <p id="registration-message"></p>
+        <button id="check-status-btn" class="main-button">
+            <i class="fas fa-sync-alt"></i> Check My Status
+          </button>
+          <button class="main-button" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-left"></i> Back to Home
+          </button>
+    </div>
+
+    <footer class="main-footer">
+        <p>&copy; 2025 BitPay. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.7.0/dist/web3.min.js"></script>
+    <script src="js/web3_init.js"></script>
+    <script src="js/register.js"></script>
+    <script>
+        // Update header account address
+        document.addEventListener('DOMContentLoaded', () => {
+            const headerAccountAddress = document.getElementById('header-account-address');
+            const updateHeaderAccount = () => {
+                if (window.ethereum && window.ethereum.selectedAddress) {
+                    headerAccountAddress.textContent = window.ethereum.selectedAddress.substring(0, 8) + '...';
+                } else if (accounts && accounts.length > 0) {
+                    headerAccountAddress.textContent = accounts[0].substring(0, 8) + '...';
+                } else {
+                    headerAccountAddress.textContent = 'Not Connected';
+                }
+            };
+            window.addEventListener('web3_initialized', updateHeaderAccount);
+            if (window.ethereum) {
+                window.ethereum.on('accountsChanged', updateHeaderAccount);
+            }
+            updateHeaderAccount(); // Initial call
+        });
+    </script>
+</body>
+</html>
